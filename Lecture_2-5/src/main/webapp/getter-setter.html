@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Author" content="Bjarte Kileng">
+    <link rel="icon" href="data:,">
+    
+    <script defer src="js/getter-setter.js"></script>
+    <link href="fag.css" rel="stylesheet" type="text/css">
+    <link href="dat108.css" rel="stylesheet" type="text/css">
+    <title>Getters og setters</title>
+  </head>
+
+  <body>
+    <h1>Getters og setters</h1>
+
+    <p>All utskrift fra JavaScript-koden skrives til web konsollet.</p>
+
+    <p>JavaScript-koden er:</p>
+    <pre class="demo">"use strict";
+
+class Person {
+    #fornavn;
+    #etternavn;
+    #fdato;
+
+    constructor(fornavn, etternavn) {
+        this.#fornavn = fornavn;
+        this.#etternavn = etternavn;
+        this.#fdato = new Date();
+    }
+
+    set alder(alder) {
+        const faar = this.#fdato.getFullYear() - alder;
+        this.#fdato.setYear(faar);
+    }
+
+    get alder() {
+        const now = new Date();
+        return now.getFullYear() - this.#fdato.getFullYear();
+    }
+
+    get navn() {
+        return `${this.#fornavn} ${this.#etternavn}`;
+    }
+}
+
+const p = new Person('Ole', 'Persen');
+
+p.alder = 22;                                     // Kjører Person sin set metode alder(22)
+console.log(`${p.navn} er ${p.alder} år gammel`); // Kjører Person sine get metoder navn() og alder()</pre>
+  </body>
+</html>
